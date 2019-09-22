@@ -1,11 +1,12 @@
 
 function RecordHaze() {
-  var hazeMap = getHazeLevel();
-  addToSheet(hazeMap);
+  var hazeDatas = getHazeLevel();
+  addToSheet(hazeDatas);
 }
 
 function getHazeLevel(){
   try{
+    var today = new Date();
     var url = "https://www.haze.gov.sg";
     var request = UrlFetchApp.fetch(url);
     var html = request.getContentText();
@@ -13,30 +14,40 @@ function getHazeLevel(){
     var map = [];
     
     var searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueCentral">'
-    map["central"] = html.indexOf(searchTag);
+    var central = html.indexOf(searchTag);
     
     searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueNorth">'
-    map["north"] = html.indexOf(searchTag);
+    var north = html.indexOf(searchTag);
     
     searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueEast">'
-    map["east"] = html.indexOf(searchTag);
+    var east = html.indexOf(searchTag);
     
     searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueWest">'
-    map["west"] = html.indexOf(searchTag);
+    var west = html.indexOf(searchTag);
     
     searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueSouth">'
-    map["south"] = html.indexOf(searchTag);
+    var south = html.indexOf(searchTag);
     
-    return map;
+    return [today,central,north,east,west,south];
   }catch(e){
     throw(e);
   }
 }
 
-function addToSheet(hazeMap){
+function addToSheet(hazeDatas){
   try{
-    var today = new Date();
-  
+
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheets = spreadsheet.getSheets();
+    var sheet = '';
+    for(var i=0; i<sheets.length;i++){
+      if(sheets[i].getName()==="sheet"){
+        sheet = spreadsheet.getSheetByName("sheet");
+      }
+    }
+    sheet.appendRow(hazeDatas);
+  }catch(e){
+    throw(e);
   }
   
 }
