@@ -7,11 +7,13 @@ function RecordHaze() {
 function getHazeLevel(){
   try{
     var url = "https://api.data.gov.sg/v1/environment/psi?date_time=2019-09-23T03%3A00%3A00";
-    var a = UrlFetchApp.fetch(url)
-    Logger.log(a);
-    Logger.log()
-    var today = new Date();    
-    return [today,central,north,east,west,south];
+    var response = UrlFetchApp.fetch(url)
+    var json=JSON.parse(response.getContentText());
+
+    Logger.log(json["items"])
+    
+  var today = new Date();    
+//    return [today,central,north,east,west,south];
   }catch(e){
     throw(e);
   }
