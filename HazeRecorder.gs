@@ -6,36 +6,11 @@ function RecordHaze() {
 
 function getHazeLevel(){
   try{
-    var today = new Date();
-    var url = "https://www.haze.gov.sg";
-    var fromText = 'ContentPlaceHolderTicker_C049_LitValueCentral';
-    var toText = '</span>';
-   //<div class="LCopac qlfxzd ">558,263 users</div>
-  //<span id="ContentPlaceHolderTicker_C049_LitValueSouth">128</span>
-  <span id="panel-stats-value" class="value" style="color: rgb(255, 206, 3);">118</span>
-    var content = UrlFetchApp.fetch(url).getContentText();
-    var scraped = Parser
-                    .data(content)
-                    .from(fromText)
-                    .to(toText)
-                    .build();
-    Logger.log(scraped);
-    
-    var searchTag = "ContentPlaceHolderTicker_C049_LitValueCentral"
-    var central = html.indexOf(searchTag);
-    
-    searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueNorth">'
-    var north = html.indexOf(searchTag);
-    
-    searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueEast">'
-    var east = html.indexOf(searchTag);
-    
-    searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueWest">'
-    var west = html.indexOf(searchTag);
-    
-    searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueSouth">'
-    var south = html.indexOf(searchTag);
-    
+    var url = "https://api.data.gov.sg/v1/environment/psi?date_time=2019-09-23T03%3A00%3A00";
+    var a = UrlFetchApp.fetch(url)
+    Logger.log(a);
+    Logger.log()
+    var today = new Date();    
     return [today,central,north,east,west,south];
   }catch(e){
     throw(e);
