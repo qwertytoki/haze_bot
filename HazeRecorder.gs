@@ -8,12 +8,20 @@ function getHazeLevel(){
   try{
     var today = new Date();
     var url = "https://www.haze.gov.sg";
-    var request = UrlFetchApp.fetch(url);
-    var html = request.getContentText();
-
-    var map = [];
+    var fromText = 'ContentPlaceHolderTicker_C049_LitValueCentral';
+    var toText = '</span>';
+   //<div class="LCopac qlfxzd ">558,263 users</div>
+  //<span id="ContentPlaceHolderTicker_C049_LitValueSouth">128</span>
+  <span id="panel-stats-value" class="value" style="color: rgb(255, 206, 3);">118</span>
+    var content = UrlFetchApp.fetch(url).getContentText();
+    var scraped = Parser
+                    .data(content)
+                    .from(fromText)
+                    .to(toText)
+                    .build();
+    Logger.log(scraped);
     
-    var searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueCentral">'
+    var searchTag = "ContentPlaceHolderTicker_C049_LitValueCentral"
     var central = html.indexOf(searchTag);
     
     searchTag = '<span id="ContentPlaceHolderTicker_C049_LitValueNorth">'
