@@ -1,7 +1,3 @@
-// 今の時間でAPI URL作成
-// 投げてデータ格納
-// 
-
 
 function RecordHaze() {
   var hazeDatas = getHazeLevel();
@@ -10,14 +6,18 @@ function RecordHaze() {
 
 function getHazeLevel(){
   try{
-    var url = "https://api.data.gov.sg/v1/environment/psi?date_time=2019-09-23T03%3A00%3A00";
+    Logger.log(today)
+    var url = "https://api.data.gov.sg/v1/environment/psi"
     var response = UrlFetchApp.fetch(url)
-    var json=JSON.parse(response.getContentText());
+    var json=JSON.parse(response);
 
-    Logger.log(json["items"][0]["readings"]["psi_twenty_four_hourly"]["central"])
-    
-  var today = new Date();    
-//    return [today,central,north,east,west,south];
+    var today = new Date();
+    var central = json["items"][0]["readings"]["psi_twenty_four_hourly"]["central"]
+    var north  = json["items"][0]["readings"]["psi_twenty_four_hourly"]["north"]
+    var east   = json["items"][0]["readings"]["psi_twenty_four_hourly"]["east"]
+    var west   = json["items"][0]["readings"]["psi_twenty_four_hourly"]["west"]
+    var south  = json["items"][0]["readings"]["psi_twenty_four_hourly"]["south"]
+  return [today,central,north,east,west,south];
   }catch(e){
     throw(e);
   }
