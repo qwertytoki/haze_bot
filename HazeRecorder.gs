@@ -1,3 +1,7 @@
+// 今の時間でAPI URL作成
+// 投げてデータ格納
+// 
+
 
 function RecordHaze() {
   var hazeDatas = getHazeLevel();
@@ -10,7 +14,7 @@ function getHazeLevel(){
     var response = UrlFetchApp.fetch(url)
     var json=JSON.parse(response.getContentText());
 
-    Logger.log(json["items"])
+    Logger.log(json["items"][0]["readings"]["psi_twenty_four_hourly"]["central"])
     
   var today = new Date();    
 //    return [today,central,north,east,west,south];
