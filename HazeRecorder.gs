@@ -1,8 +1,21 @@
 
 function RecordHaze() {
   var hazeDatas = getHazeLevel();
+  var preCentral = getData("central")
+  var curCentral = hazeDatas["central"]
   addToSheet(hazeDatas);
-  generateNotifyMessage(getPreviousValue(hazeDatas),hazeDatas["central"])
+  var message = generateNotifyMessage(preCentral,curCentral)
+  if(message !== ""){
+    notifyLINE(message)
+  }
+}
+function replyLINE(distriction){
+  // use LINE reply functions 
+  var hazeVal = getData(districiton)
+}
+
+function getData(distriction){
+  return 100
 }
 
 function getHazeLevel(){
@@ -13,7 +26,7 @@ function getHazeLevel(){
     var json=JSON.parse(response);
 
     var today = new Date();
-    var central = json["items"][0]["readings"]["psi_twenty_four_hourly"]["central"]
+    var central= json["items"][0]["readings"]["psi_twenty_four_hourly"]["central"]
     var north  = json["items"][0]["readings"]["psi_twenty_four_hourly"]["north"]
     var east   = json["items"][0]["readings"]["psi_twenty_four_hourly"]["east"]
     var west   = json["items"][0]["readings"]["psi_twenty_four_hourly"]["west"]
@@ -38,7 +51,7 @@ function addToSheet(hazeDatas){
   }catch(e){
     throw(e);
   }
-  
+}
   function generateNotifyMessage(pre,cur){
     try{
       var message = ""
@@ -56,5 +69,7 @@ function addToSheet(hazeDatas){
       throw(e);
     }
   }
-  
+function  notifyLINE(message){
+  // use LINE
 }
+
