@@ -2,6 +2,7 @@
 function RecordHaze() {
   var hazeDatas = getHazeLevel();
   addToSheet(hazeDatas);
+  generateNotifyMessage(getPreviousValue(hazeDatas),hazeDatas["central"])
 }
 
 function getHazeLevel(){
@@ -25,7 +26,6 @@ function getHazeLevel(){
 
 function addToSheet(hazeDatas){
   try{
-
     var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     var sheets = spreadsheet.getSheets();
     var sheet = '';
@@ -37,6 +37,24 @@ function addToSheet(hazeDatas){
     sheet.appendRow(hazeDatas);
   }catch(e){
     throw(e);
+  }
+  
+  function generateNotifyMessage(pre,cur){
+    try{
+      var message = ""
+      if(pre<100 && cur>=100){
+        message = "ヘイズ値が100超えました！ 弱者は外出やめましょう！"
+      }else if(pre>=100 && cur<100){
+        message = "ヘイズ値が100未満になりました！ 筋トレいくなら今です！"
+      }else if(pre<200 && cur>=200){
+        message = "ヘイズ値が200超えました！やばいって！みんな外出やめよう！"
+      }else if(pre>=200 && cur<200){
+        message = "ヘイズ値が200未満になりました！ 脅威は一旦去りましたがまだ警戒を続けて！"
+      }
+      return messages
+    }catch(e){
+      throw(e);
+    }
   }
   
 }
