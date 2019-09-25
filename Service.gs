@@ -1,6 +1,5 @@
 function getHazeLevel(){
   try{
-    Logger.log(today)
     var url = "https://api.data.gov.sg/v1/environment/psi"
     var response = UrlFetchApp.fetch(url)
     var json=JSON.parse(response);
@@ -29,7 +28,7 @@ function generateNotifyMessage(pre,cur){
     }else if(pre>=200 && cur<200){
       message = "ヘイズ値が200未満になりました！ 脅威は一旦去りましたがまだ警戒を続けて！"
     }
-    return messages
+    return message
   }catch(e){
     throw(e);
   }
