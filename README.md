@@ -11,4 +11,19 @@ I use PSI in this app.
 ### reply you if you ask haze level 
 
 ## tecninal spec
-I used GAS, LINE bot
+used GAS, LINE bot
+It records to spreadsheet on every 30 mins.
+https://docs.google.com/spreadsheets/d/1-8VPASD_xS0TpHyCHYRZ-3hs4UDHyCP2nrVec4crNTk/edit?usp=sharing
+compare with previous and current, 
+-----------------------------
+previous  | current   | action
+under 99 -> over 100 | notify
+over 100 -> under 99 | notify
+over 100 -> over 100 | do nothing 
+over 100 -> over 200 | notify
+...
+-----------------------------
+
+## how to run [get haze value] every time 
+it's easy to do if you use GAS triggers
+
