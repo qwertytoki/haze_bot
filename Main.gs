@@ -14,7 +14,7 @@ function doPost(e){
   var json = e.postData.contents
   var event = JSON.parse(json).events[0];
   if(event.type == "follow") {
-    follow(event);
+    addUserIdToSpreadSheet(event);
   }else{
     replyToLineFriend(event);
   }

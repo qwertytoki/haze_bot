@@ -23,3 +23,10 @@ function getSheet(){
     }
   }
 }
+
+function addUserIdToSpreadSheet(event){
+  var userId = event.source.userId;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = sheet.getSheetByName('users');
+  ss.appendRow([userId]); 
+}
