@@ -30,3 +30,9 @@ function addUserIdToSpreadSheet(event){
   var ss = sheet.getSheetByName('users');
   ss.appendRow([userId]); 
 }
+
+function getFriends(){
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = sheet.getSheetByName('users');
+  return ss.getDataRange().getValues();
+}

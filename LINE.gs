@@ -3,24 +3,29 @@ var PUSH_URL = "https://api.line.me/v2/bot/message/push";
 
 function  notifyToLineFriends(message){
   // use LINE
-  Logger.log(message)
-  var postData = {
-    "to": USER_ID,
-    "messages":[{
-      "type": "text",
-      "text": message,
-    }]
+  var friendData = getFriends()
+  var userId = ""
+  for(var i=0;i<friendData.length;i++){
+    userId = friendData[i][0];
+    var postData = {
+      "to": userId,
+      "messages":[{
+        "type": "text",
+        "text": message,
+      }]
+    }
+    var headers = {
+      "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+    };
+    var options = {
+      "method": "post",
+      "headers": headers,
+      "payload": JSON.stringify(postData)
+    };
+    var response = UrlFetchApp.fetch(PUSH_URL, options);
   }
-  var headers = {
-    "Content-Type": "application/json",
-    'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
-  };
-  var options = {
-    "method": "post",
-    "headers": headers,
-    "payload": JSON.stringify(postData)
-  };
-  var response = UrlFetchApp.fetch(PUSH_URL, options);
+  
 }
 
 function replyToLineFriend(event){
