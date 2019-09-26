@@ -33,5 +33,40 @@ function generateNotifyMessage(pre,cur){
     throw(e);
   }
 }
+function generateReplyMessage(e){
+  var json = JSON.parse(e.postData.contents)
+  var replyToken = json.events[0].replyTokenn
+  if(typeof replyToken === "undefined"){
+    return 
+  }
+  var message = "";
+  var distriction = getDistriction(json.event[0].message.text);
+  // Central
+  if(distriction ===2){
+    message = "セントラルのヘイズ指数は"+getHazeValue(distriction) +"です"
+  }else if(distriction===3){
+    message = "北側のヘイズ指数は"+getHazeValue(distriction) +"です"
+  }else if(distriction===4){
+    message = "東側のヘイズ指数は"+getHazeValue(distriction) +"です"
+  }else if(distriction===5){
+    message = "西側のヘイズ指数は"+getHazeValue(distriction) +"です"
+  }else if(distriction===6){
+    message = "南側のヘイズ指数は"+getHazeValue(distriction) +"です"
+  }
+  return message;
+}
+
+function getDistriction(distriction){
+  if(distriction ==="North"||distriction ==="北"){
+      return 3;
+  }else if(distriction ==="East"||distriction ==="東"){
+      return 4;
+  }else if(distriction ==="West"||distriction ==="西"){
+      return 5;
+  }else if(distriction ==="South"||distriction ==="南"){
+      return 6;
+  }
+  return 2;
+}
 
 
