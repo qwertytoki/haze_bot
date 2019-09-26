@@ -36,3 +36,17 @@ function getFriends(){
   var ss = sheet.getSheetByName('users');
   return ss.getDataRange().getValues();
 }
+
+function unfollow(e) {
+  var userId = e.source.userId;
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  var ss = sheet.getSheetByName('user');
+  var dat = ss.getDataRange().getValues();
+  var flg = -1;
+  
+  for(var i=0;i<dat.length;i++){
+    if(dat[i][0] === userId){//[行][列]
+      ss.deleteRow(i+1);
+    }
+  }
+}

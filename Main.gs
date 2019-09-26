@@ -15,6 +15,8 @@ function doPost(e){
   var event = JSON.parse(json).events[0];
   if(event.type == "follow") {
     addUserIdToSpreadSheet(event);
+  }else if(event.type == "unfollow"){
+    unfollow(event)
   }else{
     replyToLineFriend(event);
   }
