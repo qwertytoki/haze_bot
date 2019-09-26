@@ -10,11 +10,6 @@ function RecordHaze() {
   }
 }
 
-function sendMessageTest(){
-  Logger.log("sendMessageTest")
-  pushMessage()
-}
-
 function doPost(e){
   replyToLineFriend(e)
 }
