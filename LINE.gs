@@ -17,7 +17,6 @@ function  notifyToLineFriends(message){
   };
 }
 
-
 function pushMessage() {
     //deleteTrigger();
   var postData = {
@@ -42,6 +41,22 @@ function pushMessage() {
   var response = UrlFetchApp.fetch(url, options);
 }
 
-function replyToLineFriend(message){
-  // use LINE
+function replyToLineFriend(messageContent){
+  var message = [messageContent].map(function (v){
+    return {'type':'text',text:v};
+  });
+  UrlFetchApp.fetch(line_endpoint, {
+    'headers': {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+    },
+    'method': 'post',
+    'payload': JSON.stringify({
+      'replyToken': replyToken,
+      'messages': message,
+    }),
+  });
+  return ContentService.createTextOutput(JSON.stringify({'content': 'post ok'})).setMimeType(ContentService.MimeType.JSON);
+
+  
 }
