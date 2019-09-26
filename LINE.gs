@@ -32,7 +32,7 @@ function pushMessage() {
     "Content-Type": "application/json",
     'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
   };
-
+  
   var options = {
     "method": "post",
     "headers": headers,
