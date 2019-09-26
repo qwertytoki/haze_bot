@@ -1,3 +1,4 @@
+
 function RecordHaze() {
   var hazeDatas = getHazeLevel();
   var preCentral = getHazeValue(getDistriction("central"))
@@ -10,10 +11,11 @@ function RecordHaze() {
 }
 
 function sendMessageTest(){
+  Logger.log("sendMessageTest")
   pushMessage()
 }
 
-function doPost(){
-  var message = generateReplyMessage(e)
-  replyToLineFriend(message)
+function doPost(e){
+  replyToLineFriend(e)
 }
+

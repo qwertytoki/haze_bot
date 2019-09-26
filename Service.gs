@@ -33,14 +33,8 @@ function generateNotifyMessage(pre,cur){
     throw(e);
   }
 }
-function generateReplyMessage(e){
-  var json = JSON.parse(e.postData.contents)
-  var replyToken = json.events[0].replyTokenn
-  if(typeof replyToken === "undefined"){
-    return 
-  }
-  var message = "";
-  var distriction = getDistriction(json.event[0].message.text);
+function generateReplyMessage(distriction){
+  
   // Central
   if(distriction ===2){
     message = "セントラルのヘイズ指数は"+getHazeValue(distriction) +"です"

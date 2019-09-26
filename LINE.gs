@@ -1,4 +1,4 @@
-var END_POINT = 'https://api.line.me/v2/bot/message/reply';
+var REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
 var PUSH_URL = "https://api.line.me/v2/bot/message/push";
 
 function  notifyToLineFriends(message){
@@ -15,19 +15,25 @@ function  notifyToLineFriends(message){
     "Content-Type": "application/json",
     'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
   };
+  var options = {
+    "method": "post",
+    "headers": headers,
+    "payload": JSON.stringify(postData)
+  };
+  var response = UrlFetchApp.fetch(url, options);
 }
 
 function pushMessage() {
     //deleteTrigger();
   var postData = {
-    "to": myId(),
+    "to": USER_ID,
     "messages": [{
       "type": "text",
-      "text": "おはよう",
+      "text": "おはよそ",
     }]
   };
 
-  var url = "https://api.line.me/v2/bot/message/push";
+  var url = PUSH_URL;
   var headers = {
     "Content-Type": "application/json",
     'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
@@ -41,22 +47,24 @@ function pushMessage() {
   var response = UrlFetchApp.fetch(url, options);
 }
 
-function replyToLineFriend(messageContent){
-  var message = [messageContent].map(function (v){
-    return {'type':'text',text:v};
-  });
-  UrlFetchApp.fetch(line_endpoint, {
-    'headers': {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+function replyToLineFriend(e){
+  var json = e.postData.contents
+  var event = JSON.parse(json).events[0];
+  var distriction = getDistriction(event.message.text);
+  var message = {
+    "replyToken" : event.replyToken,
+    "messages" : [{
+      "type": "text",
+      "text" : generateReplyMessage(distriction)
+    }]};
+  var options = {
+    "method" : "post",
+    "headers" : {
+      "Content-Type" : "application/json",
+      "Authorization" : "Bearer " + CHANNEL_ACCESS_TOKEN
     },
-    'method': 'post',
-    'payload': JSON.stringify({
-      'replyToken': replyToken,
-      'messages': message,
-    }),
-  });
-  return ContentService.createTextOutput(JSON.stringify({'content': 'post ok'})).setMimeType(ContentService.MimeType.JSON);
-
+    "payload" : JSON.stringify(message)
+  };
+  UrlFetchApp.fetch("https://api.line.me/v2/bot/message/reply", options);
   
 }
