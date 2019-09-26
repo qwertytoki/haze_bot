@@ -11,6 +11,12 @@ function RecordHaze() {
 }
 
 function doPost(e){
-  replyToLineFriend(e)
+  var json = e.postData.contents
+  var event = JSON.parse(json).events[0];
+  if(event.type == "follow") {
+    follow(event);
+  }else{
+    replyToLineFriend(event);
+  }
 }
 

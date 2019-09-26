@@ -23,9 +23,8 @@ function  notifyToLineFriends(message){
   var response = UrlFetchApp.fetch(PUSH_URL, options);
 }
 
-function replyToLineFriend(e){
-  var json = e.postData.contents
-  var event = JSON.parse(json).events[0];
+function replyToLineFriend(event){
+  
   var distriction = getDistriction(event.message.text);
   var message = {
     "replyToken" : event.replyToken,
