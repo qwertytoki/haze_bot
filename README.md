@@ -1,3 +1,5 @@
+# ヘイズ指数お知らせくん
+
 肺が弱いためシンガポールのヘイズの影響が心配です。
 なので、ヘイズ指数お知らせ用LINE botをつくりました。
 
@@ -5,7 +7,6 @@
 https://t.co/PhRyp5oMvC?amp=1
 
 政府公式で通知してくれるmyENVってアプリもあるんですが、LINEよく開くし、、、って方いらっしゃればぜひ友達登録してみてください
-
 
 # haze_bot
 notify haze level by using LINE bot, and GAS
