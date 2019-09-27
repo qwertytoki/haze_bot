@@ -8,10 +8,11 @@ https://t.co/PhRyp5oMvC?amp=1
 
 政府公式で通知してくれるmyENVってアプリもあるんですが、LINEよく開くし、、、って方いらっしゃればぜひ友達登録してみてください
 
-![bot home]
 <img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_home.png" width=320px>
-![bot example]<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_example.png" width=320px>
-![bot QR]<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_QR.png" width=320px>
+
+<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_example.png" width=320px>
+
+<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_QR.png" width=320px>
 
 # haze_bot
 notify haze level by using LINE bot, and GAS
