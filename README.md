@@ -10,8 +10,8 @@ https://t.co/PhRyp5oMvC?amp=1
 
 ![bot home]
 <img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_home.png" width=320px>
-<!-- ![bot example](https://github.com/qwertytoki/haze_bot/blob/master/image/bot_example.png)
-![bot QR](https://github.com/qwertytoki/haze_bot/blob/master/image/bot_QR.png) -->
+![bot example]<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_example.png" width=320px>
+![bot QR]<img src="https://github.com/qwertytoki/haze_bot/blob/master/image/bot_QR.png" width=320px>
 
 # haze_bot
 notify haze level by using LINE bot, and GAS
