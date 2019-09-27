@@ -1,3 +1,6 @@
+https://twitter.com/workoutholic1/status/1177526212106670080
+
+
 # haze_bot
 notify haze level by using LINE bot, and GAS
 
