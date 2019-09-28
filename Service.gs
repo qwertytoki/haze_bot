@@ -51,13 +51,13 @@ function generateReplyMessage(distriction){
 }
 
 function getDistriction(distriction){
-  if(distriction ==="North"||distriction ==="north"||distriction ==="きた"||distriction ==="北"){
+  if(distriction.indexOf("North")!=-1||distriction.indexOf("north")!=-1||distriction.indexOf("きた")!=-1||distriction.indexOf("北")!=-1){
       return 3;
-  }else if(distriction ==="East"||distriction ==="east"||distriction ==="ひがし"||distriction ==="東"){
+  }else if(distriction.indexOf("East")!=-1||distriction.indexOf("east")!=-1||distriction.indexOf("ひがし")!=-1||distriction.indexOf("東")!=-1){
       return 4;
-  }else if(distriction ==="West"||distriction ==="west"||distriction ==="にし"||distriction ==="西"){
+  }else if(distriction.indexOf("West")!=-1||distriction.indexOf("west")!=-1||distriction.indexOf("にし")!=-1||distriction.indexOf("西")!=-1){
       return 5;
-  }else if(distriction ==="South"||distriction ==="south"||distriction ==="みなみ"||distriction ==="南"){
+  }else if(distriction.indexOf("South")!=-1||distriction.indexOf("south")!=-1||distriction.indexOf("みなみ")!=-1||distriction.indexOf("南")!=-1){
       return 6;
   }
   return 2;
