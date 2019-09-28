@@ -51,13 +51,13 @@ function generateReplyMessage(distriction){
 }
 
 function getDistriction(distriction){
-  if(distriction ==="North"||distriction ==="北"){
+  if(distriction ==="North"||distriction ==="north"||distriction ==="きた"||distriction ==="北"){
       return 3;
-  }else if(distriction ==="East"||distriction ==="東"){
+  }else if(distriction ==="East"||distriction ==="east"||distriction ==="ひがし"||distriction ==="東"){
       return 4;
-  }else if(distriction ==="West"||distriction ==="西"){
+  }else if(distriction ==="West"||distriction ==="west"||distriction ==="にし"||distriction ==="西"){
       return 5;
-  }else if(distriction ==="South"||distriction ==="南"){
+  }else if(distriction ==="South"||distriction ==="south"||distriction ==="みなみ"||distriction ==="南"){
       return 6;
   }
   return 2;
