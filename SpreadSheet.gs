@@ -1,3 +1,8 @@
+function test(){
+  var a =2
+  Logger.log(a%10)
+}
+
 function addToSheet(hazeDatas){
   try{
     var sheet = getSheet()
@@ -9,6 +14,7 @@ function addToSheet(hazeDatas){
 
 function getHazeValue(col){
   var sheet = getSheet()
+  col = col % 10
   var data = sheet.getRange(sheet.getLastRow(),col).getValue()
   return data 
 }
